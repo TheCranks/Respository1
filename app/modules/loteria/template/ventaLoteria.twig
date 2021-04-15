@@ -1,0 +1,196 @@
+{% extends "template/index.twig" %}
+
+{% block head %}
+    {#<link href="public/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="public/css/plugins/iCheck/custom.css" rel="stylesheet">#}
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-md-10">
+            <h2>Administración de Ticket</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="">Inicio</a>
+                </li>
+                <li class="active">
+                    <strong>Venta de Ticket Loteria</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="rowfooter">
+            <div class="col-md-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Nueva Venta <small></small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3" for="">Fecha:</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control requerido" type="date" id="" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3" for="">Tipo Sorteo:</label>
+                                    <div class="col-md-9">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">Seleccione</option>
+                                            {% for item in unidadMedidas %}
+                                                <option value="{{ item.id_unidad_medida }}">{{ item.nombre }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="" class="col-md-3">Número:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3" for="">Pago:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3" for="">Límite:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="col-md-3">Monto:</label>
+                                    <div class="col-md-9">
+                                        <input id="" type="text" class="form-control input-number">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row text-left">
+                            <div class="col-sm-12">
+                                <a class="btn btn-warning" id="btn_limpiar" href="/jusmar/loteria/venta">
+                                    <i class="fa fa-recycle"> Cancelar</i></a>
+                                <button class="btn btn-primary" id="">
+                                    <i class="fa fa-save"> Agregar</i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Numeros añadidos <small></small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="">
+                                    <thead>
+                                    <tr>
+                                        <th>Numero </th>
+                                        <th>Monto </th>
+                                        <th>Accion </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row text-left">
+                            <div class="col-sm-12">
+                                <button class="btn btn-danger" id=""><i class="fa fa-print"></i> Imprimir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Lista de Numeros <small></small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="">
+                                    <thead>
+                                    <tr>
+                                        <th>Numero </th>
+                                        <th>Monto </th>
+                                        <th>Numero </th>
+                                        <th>Monto </th>
+                                        <th>Numero </th>
+                                        <th>Monto </th>
+                                        <th>Numero </th>
+                                        <th>Monto </th>
+                                        <th>Numero </th>
+                                        <th>Monto </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    <script src="public/js/loteria/functionVentaLoteria.js"></script>
+{% endblock %}
+

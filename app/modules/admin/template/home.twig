@@ -1,0 +1,56 @@
+{% extends "template/index.twig" %}
+{% block content %}
+    <div class="wrapper wrapper-content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="widget style1 navy-bg" style="cursor: pointer;" onclick="irSistema('loteria')">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <i class="fa fa-money fa-5x"></i>
+                            </div>
+                            <div class="col-xs-8 text-right">
+                                <span class="hidden">Sistema de Loteria </span>
+                                <h3 class="font-bold">LOTERIA</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="widget style1 yellow-bg" style="cursor: pointer;" onclick="irSistema('facturacion')">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <i class="fa fa-money fa-5x"></i>
+                            </div>
+                            <div class="col-xs-8 text-right">
+                                <span class="hidden">Sistema de Venta </span>
+                                <h3 class="font-bold">VENTA|ARTICULOS</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <!-- ChartJS-->
+    <script src="public/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Peity -->
+    <script src="public/js/plugins/peity/jquery.peity.min.js"></script>
+
+    <script src="public/js/admin/functionAdmin.js"></script>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,186 @@
+{% extends "template/index.twig" %}
+
+{% block head %}
+    <link href="public/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="public/css/plugins/iCheck/custom.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-md-10">
+            <h2>Administración de Articulos</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="">Inicio</a>
+                </li>
+                <li class="active">
+                    <strong>Articulos</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="rowfooter">
+            <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Nuevo Articulo <small></small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <input type="hidden" id="txtIdArticulo">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3" for="">Descripcion:</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control requerido" type="text" id="txtNombreArticulo" maxlength="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-3"> Precio Costo:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control input-number" id="txtPrecioCosto" maxlength="50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3" for="">Precio Venta:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="txtPrecioVenta" class="form-control input-number" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-3">Existencia Minima:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="txtExistenciaMinima" maxlength="13">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3" for="">Unidad Medida:</label>
+                                        <div class="col-md-6">
+                                            <select name="" id="selUnidadMedida" class="form-control">
+                                                <option value="">Seleccione</option>
+                                                {% for item in unidadMedidas %}
+                                                    <option value="{{ item.id_unidad_medida }}">{{ item.nombre }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-3">Presentacion</label>
+                                        <div class="col-md-6">
+                                            <select name="" id="selPresentacion" class="form-control">
+                                                <option value="">Seleccione</option>
+                                                {% for item in presentaciones %}
+                                                    <option value="{{ item.id_presentacion }}">{{ item.nombre }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-3">Existencias</label>
+                                        <div class="col-md-4">
+                                            <input id="txtExistencias" type="text" class="form-control input-number">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        <br>
+
+                            <div class="row text-right">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-sm btn-warning" id="btn_limpiar" href="/jusmar/catalogo/articulos">
+                                        <strong>Cancelar</strong></a>
+                                    <button class="btn btn-sm btn-primary" id="btnGuardaArticulo">
+                                        <strong>Guardar</strong></button>
+                                    <button class="btn btn-danger" id="btnEliminarArticulo"><i class="fa fa-trash"></i> Eliminar</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Lista de articulos </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="tbl_articulos">
+                                <thead>
+                                <tr>
+
+                                    <th>Id</th>
+                                    <th>Nombres </th>
+                                    <th>Presentacion</th>
+                                    <th>Unidad Medida</th>
+                                    <th>Existencias</th>
+                                    <th>Precio Venta</th>
+                                    <th>Precio Compra</th>
+                                    <th>Existencia Minima</th>
+                                    <th>id unidad medida</th>
+                                    <th>id presentacion</th>
+                                    <th>Accion</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    <!-- iCheck -->
+    <script src="public/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="public/js/catalogo/functionArticulos.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green'
+            });
+        });
+    </script>
+{% endblock %}
+
